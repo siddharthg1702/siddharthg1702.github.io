@@ -1,0 +1,258 @@
+<div class="col-md-4">
+        <div style="background-color:  #00CDCD;" class="mu-single-price">
+            <div class="mu-single-price-head">
+                <span class="mu-currency">Arduino Dot Python</span>
+            </div>
+            <img height="195px" src="images/arduinoe.jpeg"></img>
+            <h3 class="mu-price-title">March 13</h3>
+            <ul>
+                <li style="text-align: left; text-justify: inter-word;">Learn to create
+                    something great, even without knowing anything about it. </li>
+                <li style="text-align: left; text-justify: inter-word;">Enter as a
+                    Novice and end up as a master in Arduino with our Arduino essentials
+                    workshop.<br><br><br></li>
+                <li></li>
+                <li><u>Contact</u></li>
+                Mokesh B - 8903221909
+            </ul>
+            <!-- <p style="color: yellow;">Fast Filling</p> -->
+            <!-- <p style="color: yellow;"> <700 ₹650 till March 7<sup>th</sup> </p> -->
+            <!-- <p style="color: yellow;">10% off on each kit</p> -->
+            <a href="Arduino.pdf" target="_blank">
+                <p style="color: white" ;>click for more details</p>
+            </a>
+
+            <center>
+                <h5>700 Rupees Per ticket<br>(Early bird offer : 20% off)</h5>
+            </center>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="mu-register-btn" style="font-size:18px"
+                data-toggle="modal" data-target="#exampleModal">
+                Register Here
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <h5 class="modal-title" id="exampleModalLabel">Arduino Dot
+                                Python</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <ul>
+
+                                <li>Number of tickets : <select id='selecta1'>
+                                        <option value="t1">0</option>
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4 (Pay for 3 - 700 Each)
+                                        </option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </li>
+
+                                <!-- <li style="margin-top: 2%">Number of kits required : <select id='selecta2'>
+                                        <option value="s1" selected="true">0</option>
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <p style="font-size:15px">(Buy a kit for a team of upto 4 members)</p>
+                                </li> -->
+
+                                <li style="margin-top: 2%">Type of registration * <p
+                                        style="font-size:18px" id="pp0"></p>
+                                </li>
+                                <li>
+                                    <input type="radio" name="type" id="full0"
+                                        value="full"> Online Registration<br>
+                                    <input type="radio" name="type" id="onsite0"
+                                        value="onsite" checked> Onsite Registration<br>
+                                </li>
+
+                                <li style="margin-top: 2%">College * <p
+                                        style="font-size:18px" id="pp1"></p>
+                                </li>
+                                <li>
+                                    <input type="radio" name="college" id="mit"
+                                        value="mit"> MIT<br>
+                                    <input type="radio" name="college" id="other"
+                                        value="other" checked> Others<br>
+                                </li>
+
+                                <li style="margin-top: 1%">
+                                    <p style="color: red;" id="total"></p>
+                                    <p style="color: red;" id="off">Proceed to pay 200
+                                        Rupees per ticket online and the remaining
+                                        amount on 13th March onsite</p>
+                                    <p style="color: red;" id="mit1"></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <button id="b0" class="mu-register-btn" style="font-size:15px"
+                            onClick="GetTotal('selecta1');">Register
+                            to pay</button>
+                        <button type="button" class="mu-register-btn"
+                            style="font-size:15px" data-dismiss="modal">Back</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+
+
+                $('input:radio[name="type"]').change(
+                    function () {
+                        if ($(this).is(':checked') && $(this).val() == 'onsite') {
+                            // append goes here
+                            document.getElementById("off").innerHTML = "Proceed to pay 200 Rupees per ticket online and the remaining amount on 13th March onsite";
+                        }
+                    });
+
+                $('input:radio[name="type"]').change(
+                    function () {
+                        if ($(this).is(':checked') && $(this).val() == 'full') {
+                            // append goes here
+                            document.getElementById("off").innerHTML = "";
+                        }
+                    });
+
+                $('input:radio[name="college"]').change(
+                    function () {
+                        if ($(this).is(':checked') && $(this).val() == 'mit') {
+                            // append goes here
+                            document.getElementById("mit1").innerHTML = "Onsite registration is not avaiable for MIT students";
+                        }
+                    });
+
+                fl = 0; fl1 = 0;
+                // $('#selecta2').on('change', function () {
+                // 	if (this.value != "s1") {
+                // 		document.getElementById("total").innerHTML = "";
+                // 	}
+                // });
+                $('#selecta1').on('change', function () {
+                    if (this.value != "t1") {
+                        document.getElementById("total").innerHTML = "";
+                    }
+                });
+                var ki = 0;
+                function GetTotal(el) {
+
+                    // document.getElementById('off').innerHTML = "";
+                    var t = document.getElementById(el);
+                    // var k = document.getElementById(e2);
+                    var tickets = t.options[t.selectedIndex].value;
+                    // var kits = k.options[k.selectedIndex].value;
+                    var total = 0;
+                    var online = document.getElementById('full0').checked;
+                    var onsite = document.getElementById('onsite0').checked;
+
+                    var mit_stud = document.getElementById('mit').checked;
+                    var others = document.getElementById('other').checked;
+
+                    if (mit_stud && tickets == 4) {
+                        alert("Bulk offer not applicable for MIT students");
+                        return;
+                    }
+                    if (tickets == 4 && onsite) {
+                        alert("Bulk offer not applicable for onsite registration");
+                        return;
+                    }
+                    if (mit_stud && onsite) {
+                        alert("Onsite registration is not aplicable for MIT students");
+                        return;
+                    }
+
+                    var set, clg;
+                    if (mit_stud) {
+                        clg = "mit";
+                    }
+                    else {
+                        clg = "others"
+                    }
+                    if (online) {
+                        set = "online";
+                        // document.getElementById('pp0').innerHTML = "Online";
+                    }
+                    else if (onsite) {
+
+                        set = "onsite";
+                        // document.getElementById('pp0').innerHTML = "Onsite";
+                    }
+
+                    if (tickets == "t1") {
+                        document.getElementById('total').innerHTML = "Please enter the number of tickets required!";
+                    }
+                    else {
+                        if (tickets != "t1") {
+
+                            if (mit_stud) {
+                                total = (tickets * 400);
+                            }
+                            else if (document.getElementById('full0').checked) {
+                                total = (tickets * 560);
+                            }
+                            else if (document.getElementById('onsite0').checked) {
+                                total = tickets * 200;
+                            }
+                            if (tickets == 4) {
+                                total = 2100;
+                            }
+                        }
+                        // var today = new Date();
+                        // var dd = today.getDate();
+                        // var mm = today.getMonth() + 1; //January is 0!
+                        // var yyyy = today.getFullYear();
+                        // if (mm == 3 && dd <= 7 && yyyy == 2019 && tickets != "t1" && online)
+                        // 	total = total - 50;
+
+                        // if (kits != "s1") {
+                        // 	var off = kits * 10;
+                        // 	if (tickets != "t1" && parseInt(tickets) < 5 && online) {
+                        // 		total = total + (800 * kits) - ((800 * kits * 10) / 100);
+                        // 		document.getElementById('total').innerHTML = "You get an additional " + off + "% off!!";
+                        // 	}
+                        // 	else {
+                        // 		total += 800 * kits;
+                        // 	}
+                        // 	location.href = '\workshopDetails.php?workshop_name=Arduino Essentials&tickets=' + document.getElementById('selecta1').value + '&kits=' + document.getElementById('selecta2').value + '&total=' + total + '&type=' + set;
+                        // }
+                        // else {
+                        if (!ki) {
+                            location.href = '\workshopDetails.php?workshop_name=Arduino Dot Python&tickets=' + document.getElementById('selecta1').value + '&kits=' + '0' + '&total=' + total + '&type=' + set + '&clg=' + clg;
+                        }
+                        // else {
+                        //     ki = 1;
+                        //     document.getElementById('total').innerHTML = "Buying kits is highly recommended! (Click Register once more to proceed without buying kits)";
+                        // }
+                        // }
+                    }
+
+                }
+
+
+
+            </script>
+            <!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+            <!-- <button style="margin-top: 0.5%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Arduino Essentials&tickets='+ document.getElementById('selecta1').value+'&total='+document.getElementById('total').innerHTML;"> Register to Pay</button> -->
+            <!-- <button style="margin-top: 0.5%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Arduino Essentials&tickets='+ document.getElementById('selecta1').value+'&kits='+document.getElementById('selecta2').value+'&total='+document.getElementById('total').innerHTML+'&type='+document.getElementById('pp0').innerHTML;"> Register to Pay</button> -->
+        </div>
+    </div>

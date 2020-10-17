@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>DexBot</title>
+	<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+	<script src = "https://raw.githubusercontent.com/carhartl/jquery-cookie/master/src/jquery.cookie.js"></script> -->
+	<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/icon" href="images/dexbot_logo.png" />
+	<!-- Font Awesome -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Slick slider -->
+	<link href="assets/css/slick.css" rel="stylesheet">
+	<!-- Theme color -->
+	<link id="switcher" href="assets/css/theme-color/lite-blue-theme.css" rel="stylesheet">
+
+	<!-- Main Style -->
+	<link href="style.css" rel="stylesheet">
+	<style>
+		* {
+			  /* font-family: sans-serif; */
+			  /* font-family: 'Inconsolata', monospace; */
+				 font-family: 'Merriweather', serif; font-size:20px;
+
+
+			}
+
+
+			@media only screen and (max-width: 600px) {
+				* {
+			  /* font-family: sans-serif; */
+			  /* font-family: 'Inconsolata', monospace; */
+				 font-family: 'Merriweather', serif; font-size:15px;
+			}
+			}
+
+			button:disabled,
+			button[disabled]{
+			border: 1px solid #999999;
+			background-color: #cccccc;
+			color: #666666;
+			}
+		</style>
+	<!-- Fonts -->
+
+	<!-- Open Sans for body font -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Fahkwang:300,400,400i,600,700,800" rel="stylesheet"> -->
+
+	<!-- Montserrat for title -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Fahkwang" rel="stylesheet"> -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style>
+		/* Dropdown Button */
+.dropbtn {
+    background-color: rgba(0,0,0,0);
+    color: black;
+    
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#calc:hover {
+  /* background: rebeccapurple; */
+  opacity: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: rgba(0,0,0,0);
+} 
+
+	a {
+    color: #00CDCD;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 200px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.btn-disabled{
+  color:#fff;
+  border-color: #a0a0a0;
+  background-color: #a0a0a0;
+
+}
+.btn-disabled:hover,
+.btn-disabled:focus,
+.btn-disabled:hover,
+.btn-disabled:focus {
+  color:#fff;
+  border-color: #a0a0a0;
+  background-color: #a0a0a0;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+					 
+</style>
+
+	<script>
+		// var somefunction = (function() {
+		//     var executed = false;
+		//     return function() {
+		//         if (!executed) {
+		//             executed = true;
+		// 			$('html, body').delay(1000).animate({
+		//             scrollTop: $('#mu-about').offset().top
+		// 		}, 3000); 
+
+		//         }
+		//     };
+		// })();
+		// document.cookie = "executed=false";
+		// $.cookie('executed', false)
+		// var istrue = "false";
+		// '<%Session["executed"] = "' + istrue + '"; %>';
+		// localStorage.setItem('executed', 'false');
+		// $(document).ready(function() {
+		// somefunction();
+		// var decodedCookie = decodeURIComponent(document.cookie);
+		// var ca = decodedCookie.split('=');
+		// var c = ca[1].split(';')[0];
+		// alert(c);
+		// if(c == "false")	{
+		// var istrue = '<%= Session["executed"] %>';
+		// if(istrue == "false")	{
+		// alert($.cookie('executed'));
+		// if($.cookie('executed') == false){  
+
+		// $('html, body').delay(1000).animate({
+		//         scrollTop: $('#mu-about').offset().top
+		// 	}, 3000); 
+		// 	document.cookie = "executed=true";
+		// var decodedCookie = decodeURIComponent(document.cookie);
+
+		// var c = ca[1].split(';')[0];
+		// alert(c);
+		// istrue = "true"
+		// '<%Session["executed"] = "' + istrue + '"; %>';	
+
+		// });
+		if (performance.navigation.type == 2) {
+			location.reload(true);
+		}
+	</script>
+</head>
+
+<body>
+
+	<!-- Start Header -->
+	<header id="mu-hero" class="" role="banner">
+		<!-- Start menu  -->
+		<nav class="navbar navbar-fixed-top navbar-default mu-navbar">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+
+					<!-- Logo -->
+					<a style="margin-top:-5%;margin-bottom: 2%;" class="navbar-brand" href="index.html"><img src="images/mitra_logo.png"
+						 width="50px"></img></a>
+
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav mu-menu navbar-right">
+						<li><a href="#mu-hero">Home</a></li>
+						<li><a href="#mu-about">About Us</a></li>
+						<!-- <li><a href="#mu-register">Register</a></li> -->
+						<li><a href="#mu-accom">Accommodation</a></li>
+						<li><a href="#mu-pricing">Workshops</a></li>
+
+						<li><a href="#mu-schedule">Events</a></li>
+						<li><a href="#mu-contact">Contact</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<!-- End menu -->
+
+		<div class="mu-hero-overlay">
+			<div class="container">
+				<div class="mu-hero-area">
+
+					<!-- Start hero featured area -->
+					<div class="mu-hero-featured-area">
+						<!-- Start center Logo -->
+						<div class="mu-logo-area">
+							<!-- text based logo --
+							<a class="mu-logo" href="#"><img  width="100px" src="images/dexbot_logo.png"></a>
+							<!-- image based logo -->
+							<!-- <a class="mu-logo" href="#"><img src="assets/images/logo.jpg" alt="logo img"></a> -->
+						</div>
+						<!-- End center Logo -->
+
+						<div class="mu-hero-featured-content">
+
+							<h1>WELCOME TO DexBot '19</h1>
+							<h2>BY MITRA</h2>
+
+
+							<div class="mu-event-counter-area">
+								<div id="mu-event-counter">
+
+								</div>
+							</div>
+
+						</div>
+						<center>
+							<p class="mu-event-date-line">8 - 9 March, 2019. </p>
+							<br>
+							<p class="mu-event-date-line">MIT, Anna University. </p>
+						</center>
+						<!-- <center>     <a  style="margin-top: 60px;" class="mu-register-btn" href="#mu-register"> Register now</a></center> -->
+					</div>
+					<!-- End hero featured area -->
+
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- End Header -->
+
+	<!-- Start main content -->
+	<main role="main">
+
+
+
+		<!-- Start About -->
+		<section id="mu-about">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-about-area">
+							<!-- Start Feature Content -->
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mu-about-left">
+										<img class="" src="images/about.jpg" alt="Men Speaker">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mu-about-right">
+										<h2>About The Event</h2>
+										<p>Do you think Robotics is the future? Actually, we say it is already there. Come, explore and showcase your
+											dexterity in the National level Inter-college Robotics symposium as we make Blueprints to Reality.</p>
+									</div>
+								</div>
+							</div>
+							<!-- End Feature Content -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End About -->
+
+
+		<!-- <script>
+				document.getElementById("mu-about").scrollIntoView();
+			</script> -->
+
+		<!-- Start Register  -->
+		<!-- <section id="mu-register">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-register-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Registration</h2>
+							</div>
+
+							<div class="mu-register-content">
+								<form class="mu-register-form" action="registereduser.php" method="post">
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">                
+												<input type="text" class="form-control" placeholder="Full Name" id="name" name="name" required="">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">                
+												<input type="email" class="form-control" placeholder="Email" id="email" name="email" required="">
+											</div>     
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">                
+												<input type="text" class="form-control" pattern="[789][0-9]{9}" placeholder="Phone Number" id="telephone" name="phone" required="">
+											</div>
+										</div>
+										<div class="col-md-6">
+											
+										<div class="form-group"> 
+											<select class="form-control" name="gender" id="ticket" required="">
+											   <option selected="true" disabled="disabled">Gender</option> 
+												<option value="M">Male</option>
+												<option value="F">Female</option>
+											</select>
+										</div>      
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">                
+												<input type="text" class="form-control" placeholder="College/ School/ Institute/ Company name" id="telephone" name="college" required="">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">                
+												<input type="text" class="form-control" placeholder="Department" id="dept" name="dept" required="">
+											</div>
+										</div>
+										</div>
+										<div class="row">
+										<div class="col-md-12">
+											
+										<div class="form-group"> 
+											<select class="form-control" name="year" id="ticket" required="">
+											    <option selected="true" disabled="disabled">Year studying</option> 
+												<option value="1">First Year</option>
+												<option value="2">Second Year</option>
+												<option value="3">Third Year</option>
+												<option value="4">Fourth Year</option>
+												<option value="5">Schooling</option>
+												<option value="6">Graduate</option>
+											</select>
+										</div>      
+										</div>
+										</div>
+								
+
+									<button style="margin-bottom: 20px;" type="submit" class="mu-reg-submit-btn">SUBMIT</button>
+                                   								<center><a style="margin-top: 20px" href="http://www.uniqtechnologies.co.in/" target="_blank"><img border="0"  src="spon.jpg" width="150px"></a></center>
+																</div>
+					            </form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+		<!-- End Register -->
+
+		<!-- Start Accomodation -->
+
+		<section id="mu-accom">
+			<div style="margin-top : 5%;" class="container">
+				<div class="row">
+
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<center>
+							<h3>Accommodation Instructions</h3>
+						</center>
+						<center>Accommodation will be provided for the outstation participants only.<br>
+							Register for accommodation with mentioning number of members and days to stay.<br>
+							Accommodation will be provided for 2 days or 1 day with the proof of your event participation.<br>
+							Contact the Accommodation Team, as you reach the campus.<br>
+							Rooms will be allotted for girls and boys separately.<br>
+							Alcohol, drugs and explosives are strictly prohibited.<br>
+							Participant should take care of their belongings. Accommodation Team will not be responsible for any mishaps.<br>
+							Accommodation will be given for maximum of two days (from 7th March evening to 8th March evening).<br>
+							Participant must carry a valid Government id proof for verification.<br>
+							<strong> Accomodation is closed </strong> <br>
+							<strong>Contact Ashik Ismail (82200 72074) for further details</strong> <br>
+							<!-- <strong>Payment for accomodation will be updated soon </strong></center> -->
+							<!-- <center>     <a  style="margin-top: 35px;" class="mu-register-btn" target="_blank" href="https://www.payumoney.com/events/#/buyTickets/ACCOMODATIONS"> Pay for Accommodation</a></center> -->
+
+							<!-- Button trigger modal -->
+							<!-- <center><button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal9">
+													Pay for Accomodation
+											</button> -->
+						</center>
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+						 aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+
+										<h5 class="modal-title" id="exampleModalLabel">Accomodation</h5>
+										<!-- /	</div> -->
+										<div class="modal-body">
+
+											<ul>
+												<br>
+
+												Number of person : <select id='selectf1'>
+
+													<option value="1" selected="true">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+												<br>
+												<!-- </li> -->
+												<br>
+												<!-- <li style="margin-top: 2%" > -->
+												Number of days: <select id='selectf2'>
+													<option value="1" selected="true">1</option>
+													<option value="2">2</option>
+												</select>
+												<!-- </li> -->
+											</ul>
+											<p style="color: red;" id="total"></p>
+											<p style="color: red;" id="off9"></p>
+											</li>
+											</ul>
+										</div>
+										<button class="mu-register-btn" style="font-size:15px" onClick="acco('selectf1','selectf2');">Proceed to pay</button>
+										<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+		</section>
+		<script>
+
+
+			function acco(el, e2) {
+
+				var t = document.getElementById(el);
+				var k = document.getElementById(e2);
+				var persons = t.options[t.selectedIndex].value;
+				var days = k.options[k.selectedIndex].value;
+				var total = 0;
+				total = days * 350 * persons;
+				location.href = '\workshopDetails.php?workshop_name=Accomodation&tickets=' + document.getElementById('selectf1').value + '&kits=' + document.getElementById('selectf2').value + '&total=' + total + '&type=accomodation';
+
+			}
+
+
+
+		</script>
+
+
+		<!-- End About -->
+
+
+		<!-- Start Pricing  -->
+		<section id="mu-pricing">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-pricing-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Workshops</h2>
+								<p>On-line reservations are open for all workshops, grab your seats with <strong>exclusive offers </strong>on
+									<strong>on-line payments</strong>. Onsite registrations will start by <strong>8.30 AM</strong>. Be present
+									<strong>1 hour</strong> before the starting time of the workshop. All workshops starts by <strong>9.45 AM</strong>.
+									Bring at least one<strong> pen drive and a laptop (backup/optional) per team</strong>. Participants will be
+									provided with <strong>Anna university certificate.</strong></p>
+
+								<p style="color: red"><strong>FOR KIT BASED WORKSHOPS, COMPETITIONS WILL BE HELD ON THE SECOND DAY AND WINNERS
+										WILL BE AWARDED CERTIFICATE OF EXCELLENCE</strong></p>
+								<p> Kindly <strong>register</strong> to go to payment portal for the workshops </p>
+								<p> <strong>Online registration - Complete amount for the workshop should be paid online.</strong></p>
+								<p><strong> Onsite registration - Register yourself for the workshop by paying  250 Rupees per ticket online . The
+										remaining amount should be paid on 8<sup>th</sup> March on spot.</strong> </p>
+										<p style="color: red"><strong> <br> NOTE : <br> ONCE THE PAYMENT IS COMPLETE, NO REFUND WILL BE PROVIDED</strong></p>
+										<p style="color: red"><strong>  YOU CANNOT CANCEL THE REGISTERED TICKET AND ONLY REGISTERED PERSON SHOULD COME </strong></p>
+										
+								
+							</div>
+							<div class="mu-pricing-conten">
+								<div class="row">
+
+									<!-- single price item --
+									<div class="col-md-4 col-xs-6">
+									     
+										<div class="mu-single-price">
+                                         
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Ethical Hacking</span>
+											</div>
+											<img height="200px" src="images/eh.jpg"></img>
+											<h3 class="mu-price-title">March 16</h3>
+											<ul>
+												<li>Basic Class Ticket</li>
+												<li>Access to all sessions</li>
+												<li>Free Breakfast</li>
+												<li><u>Contact</u></li>
+												Syed Salman-70921 91115<br>
+                                                    Khiruparaj-86081 36225<br>
+											</ul>
+											<a href="ethical.pdf" target="_blank">click for more details</a>
+											<a class="mu-register-btn" href="https://www.payumoney.com/events/#/buyTickets/ETHICAL_HACKING_WS_feb2"> Register Now</a>
+										</div>
+									</div>
+									<!-- / single price item -->
+
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div style="background-color:  #00CDCD;" class="mu-single-price">
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Arduino Dot Python</span>
+											</div>
+											<img height="200px" src="images/arduinoe.jpeg"></img>
+											<h3 class="mu-price-title">March 8&9</h3>
+											<ul>
+												<li>Learn to create something great, even without knowing anything about it. </li>
+												<li>Enter as a Novice and end up as a master in Arduino with our Arduino essentials workshop.</li>
+												<li><u>Contact</u></li>
+												Sachinddar 9597316585
+											</ul>
+											<!-- <p style="color: yellow;">Fast Filling</p> -->
+											<!-- <p style="color: yellow;"> <700 ₹650 till March 7<sup>th</sup> </p> -->
+											<!-- <p style="color: yellow;">10% off on each kit</p> -->
+											<a href="arduino.pdf" target="_blank">
+												<p style="color: white" ;>click for more details</p>
+											</a>
+
+											<center>
+												<h5>700 Rupees Per ticket. 800 Per Kit</h5>
+											</center>
+
+											<!-- Button trigger modal -->
+											<button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal">
+												Register Here
+											</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Arduino Essentials</h5>
+														</div>
+														<div class="modal-body">
+
+															<ul>
+
+																<li>Number of tickets : <select id='selecta1'>
+																		<option value="t1">0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+
+																<li style="margin-top: 2%">Number of kits required : <select id='selecta2'>
+																		<option value="s1" selected="true">0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+																<li>
+																	<p style="font-size:15px">(Buy a kit for a team of upto 4 members)</p>
+																</li>
+
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp0"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type" id="full0" value="full" checked> Online Registration<br>
+																	<input type="radio" name="type" id="onsite0" value="onsite"> Onsite Registration<br>
+
+																</li>
+																<li style="margin-top: 1%">
+																	<p style="color: red;" id="total"></p>
+																	<p style="color: red;" id="off"></p>
+																</li>
+															</ul>
+														</div>
+														<button id="b0" class="mu-register-btn" style="font-size:15px" onClick="GetTotal('selecta1','selecta2');">Register
+															to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+											</div>
+
+
+											<script>
+
+
+												$('input:radio[name="type"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'onsite') {
+															// append goes here
+															document.getElementById("off").innerHTML = "Proceed to pay 250 Rupees per ticket online and the remaining amount on 8th March onsite";
+														}
+													});
+
+												$('input:radio[name="type"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'full') {
+															// append goes here
+															document.getElementById("off").innerHTML = "";
+														}
+													});
+
+
+												fl = 0; fl1 = 0;
+												$('#selecta2').on('change', function () {
+													if (this.value != "s1") {
+														document.getElementById("total").innerHTML = "";
+													}
+												});
+												$('#selecta1').on('change', function () {
+													if (this.value != "t1") {
+														document.getElementById("total").innerHTML = "";
+													}
+												});
+												var ki = 0;
+												function GetTotal(el, e2) {
+
+													// document.getElementById('off').innerHTML = "";
+													var t = document.getElementById(el);
+													var k = document.getElementById(e2);
+													var tickets = t.options[t.selectedIndex].value;
+													var kits = k.options[k.selectedIndex].value;
+													var total = 0;
+													var online = document.getElementById('full0').checked;
+													var onsite = document.getElementById('onsite0').checked;
+													var set;
+													if (online) {
+														set = "online";
+														// document.getElementById('pp0').innerHTML = "Online";
+													}
+													else if (onsite) {
+
+														set = "onsite";
+														// document.getElementById('pp0').innerHTML = "Onsite";
+													}
+
+													if (tickets == "t1" && kits == "s1") {
+														document.getElementById('total').innerHTML = "Please enter the number of tickets or kits required!";
+													}
+													else {
+														if (tickets != "t1") {
+
+															if (document.getElementById('full0').checked) {
+																total = (tickets * 700);
+
+															}
+															else if (document.getElementById('onsite0').checked) {
+																total = tickets * 250;
+
+															}
+
+
+														}
+														var today = new Date();
+														var dd = today.getDate();
+														var mm = today.getMonth() + 1; //January is 0!
+														var yyyy = today.getFullYear();
+														if (mm == 3 && dd <= 7 && yyyy == 2019 && tickets != "t1" && online)
+															total = total - 50;
+
+														if (kits != "s1") {
+															var off = kits * 10;
+															if (tickets != "t1" && parseInt(tickets) < 5 && online) {
+																total = total + (800 * kits) - ((800 * kits * 10) / 100);
+																document.getElementById('total').innerHTML = "You get an additional " + off + "% off!!";
+															}
+															else {
+																total += 800 * kits;
+															}
+															location.href = '\workshopDetails.php?workshop_name=Arduino Essentials&tickets=' + document.getElementById('selecta1').value + '&kits=' + document.getElementById('selecta2').value + '&total=' + total + '&type=' + set;
+														}
+														else {
+															if (ki) {
+																location.href = '\workshopDetails.php?workshop_name=Arduino Essentials&tickets=' + document.getElementById('selecta1').value + '&kits=' + document.getElementById('selecta2').value + '&total=' + total + '&type=' + set;
+															}
+															else {
+
+																ki = 1;
+																document.getElementById('total').innerHTML = "Buying kits is highly recommended! (Click Register once more to proceed without buying kits)";
+															}
+														}
+													}
+
+												}
+
+
+
+											</script>
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+											<!-- <button style="margin-top: 0.5%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Arduino Essentials&tickets='+ document.getElementById('selecta1').value+'&total='+document.getElementById('total').innerHTML;"> Register to Pay</button> -->
+											<!-- <button style="margin-top: 0.5%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Arduino Essentials&tickets='+ document.getElementById('selecta1').value+'&kits='+document.getElementById('selecta2').value+'&total='+document.getElementById('total').innerHTML+'&type='+document.getElementById('pp0').innerHTML;"> Register to Pay</button> -->
+										</div>
+									</div>
+									<!-- / single price item -->
+
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price">
+
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Internet of Things</span>
+											</div>
+											<img height="170px" src="images/IoT.png"></img>
+											<h3 class="mu-price-title">March 8&9</h3>
+											<ul>
+												<li>Analysts predict that new Internet of Things (IoT) products and services will grow exponentially in the
+													next years.</li>
+												<li>Come be a part of the next major leap forward in mankind’s technical evolution - The Internet of Things
+													! </li>
+												<li><u>Contact</u></li>
+												Aniruth 89394 03525
+
+											</ul>
+											<!-- <p style="color: red;"><strike>₹700</strike> ₹650 till March 7<sup>th</sup> </p> -->
+											<!-- <p style="color: red;">10% off on each kit</p> -->
+
+											<!-- <p style="color: red;">Online reservations - Closed <br> On spot registration will be done on day of workshop</p> -->
+											<a href="iot.pdf" target="_blank">click for more details</a>
+
+											<center style="margin-top:1%">
+												<h5>700 Rupees Per ticket 650 Rupees Per Kit</h5>
+											</center>
+
+
+											<button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal1">
+												Register here
+											</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Internet Of Things</h5>
+														</div>
+														<div class="modal-body">
+
+															<ul>
+																<li>Number of tickets : <select id='selectb1'>
+																		<option value="t2" selected='true'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+																<li style="margin-top: 2%">Number of kits required : <select id='selectb2'>
+																		<option value="s2" selected='true'>0 </option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+																<li>
+																	<p style="font-size:15px">(Buy a kit for a team of upto 4 members)</p>
+																</li>
+
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp1"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type1" id="full1" value="full" checked> Online Registration <br>
+																	<input type="radio" name="type1" id="onsite1" value="onsite"> Onsite Registration<br>
+
+																</li>
+
+																<!-- <li style="margin-top: 2%"><button id = "b1" class="mu-register-btn" style="font-size:15px" onClick="GetTotal1('selectb1','selectb2');">Register to Pay</button> -->
+																<p style="color: red;" id="total1"></p>
+																</li>
+																<li>
+																	<p style="color: red;" id="off1"></p>
+																</li>
+															</ul>
+
+														</div>
+														<button id="b1" class="mu-register-btn" style="font-size:15px" onClick="GetTotal1('selectb1','selectb2');">Register
+															to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+											</div>
+
+
+											<script>
+
+												$('input:radio[name="type1"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'onsite') {
+															// append goes here
+															document.getElementById("off1").innerHTML = "Proceed to pay 250 Rupees per  online and the remaining amount on 8th March onsite";
+														}
+													});
+
+												$('input:radio[name="type1"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'full') {
+															// append goes here
+															document.getElementById("off1").innerHTML = "";
+														}
+													});
+
+
+												$('#selectb2').on('change', function () {
+													if (this.value != "s2") {
+														document.getElementById("total1").innerHTML = "";
+													}
+												});
+												$('#selectb1').on('change', function () {
+													if (this.value != "t2") {
+														document.getElementById("total1").innerHTML = "";
+													}
+												});
+												var ki1 = 0;
+												function GetTotal1(el, e2) {
+
+													// document.getElementById('off1').innerHTML = "";
+													var t = document.getElementById(el);
+													var k = document.getElementById(e2);
+													var tickets = t.options[t.selectedIndex].value;
+													var kits = k.options[k.selectedIndex].value;
+													var total = 0;
+													var online = document.getElementById('full1').checked;
+													var onsite = document.getElementById('onsite1').checked;
+													var set;
+													if (online) {
+														set = "online";
+														// document.getElementById('pp0').innerHTML = "Online";
+													}
+													else if (onsite) {
+
+														set = "onsite";
+														// document.getElementById('pp0').innerHTML = "Onsite";
+													}
+
+													if (tickets == "t2" && kits == "s2") {
+														document.getElementById('total1').innerHTML = "Please enter the number of tickets or kits required!";
+													}
+													else {
+														if (tickets != "t2") {
+
+															if (document.getElementById('full1').checked) {
+																total = (tickets * 700);
+
+															}
+															else if (document.getElementById('onsite1').checked) {
+																total = tickets * 250;
+
+															}
+
+
+														}
+														var today = new Date();
+														var dd = today.getDate();
+														var mm = today.getMonth() + 1; //January is 0!
+														var yyyy = today.getFullYear();
+														if (mm == 3 && dd <= 7 && yyyy == 2019 && tickets != "t2" && online)
+															total = total - 50;
+
+														if (kits != "s2") {
+															var off = kits * 10;
+															if (tickets != "t2" && parseInt(tickets) < 5 && online) {
+																total = total + (650 * kits) - ((650 * kits * 10) / 100);
+																// document.getElementById('total1').innerHTML = "You get an additional "+ off+"% off!!";
+															}
+															else {
+																total += 650 * kits;
+															}
+															location.href = '\workshopDetails.php?workshop_name=Internet Of Things&tickets=' + document.getElementById('selectb1').value + '&kits=' + document.getElementById('selectb2').value + '&total=' + total + '&type=' + set;
+														}
+														else {
+															if (ki1) {
+																location.href = '\workshopDetails.php?workshop_name=Internet Of Things&tickets=' + document.getElementById('selectb1').value + '&kits=' + document.getElementById('selectb2').value + '&total=' + total + '&type=' + set;
+															}
+															else {
+
+																ki1 = 1;
+																document.getElementById('total1').innerHTML = "Buying kits is highly recommended! (Click Register once more to proceed without buying kits)";
+															}
+														}
+													}
+
+												}
+
+
+
+											</script>
+
+
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+											<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Internet Of Things&tickets='+ document.getElementById('selectb1').value+'&kits='+document.getElementById('selectb2').value+'&total='+document.getElementById('total1').innerHTML;"> Register to Pay</button> -->
+											<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Internet Of Things&tickets='+ document.getElementById('selectb1').value+'&kits='+document.getElementById('selectb2').value+'&total='+document.getElementById('total1').innerHTML+'&type='+document.getElementById('pp1').innerHTML;"> Register to Pay</button> -->
+
+											<!-- <a style="margin-top: 1%" class="mu-register-btn" href="workshop.php"> Register to Pay</a> -->
+										</div>
+									</div>
+									<!-- / single price item -->
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div style="background-color:  #00CDCD;" class="mu-single-price">
+
+											
+											<div class="mu-single-price-head">
+												<span class="mu-currency"> Self Driving Cars powered by AI and Computer Vision</span>
+											</div>
+											<img height="220px" src="images/Arduino.jpg"></img>
+											<h3 class="mu-price-title">March 8&9</h3>
+											<ul>
+												<li>Wanna get into the world of Robotics? </li>
+												<li> Come learn about the first Microcontroller developed and dwell deep into the development of Robotics
+												</li>
+												<li><u>Contact</u></li>
+												Mokesh 89032 21909
+
+											</ul>
+											<!-- <p style="color: red;"><strike>₹700</strike> ₹650 till March 7<sup>th</sup> </p> -->
+											<!-- <p style="color: red;">10% off on each kit</p> -->
+
+											<!-- <p style="color: red;">On-line reservations - Closed <br> On spot registration will be done on day of workshop</p> -->
+											<a href="selfdriving.pdf" target="_blank">
+												<p style="color: white" ;>click for more details</p>
+											</a>
+											<center>
+												<h5> 700 Rupees Per ticket. 1600 Rupees Per Kit
+												</h5>
+											</center>
+
+
+											<button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal2">
+												Register here
+											</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Arduino For Robotics</h5>
+														</div>
+														<div class="modal-body">
+
+															<ul>
+																<li>Number of tickets : <select id='selectc1'>
+																		<option value="t3" selected='true'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+																<li style="margin-top: 2%">Number of kits required : <select id='selectc2'>
+																		<option value="s3" selected='true'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select>
+																</li>
+																<li>
+																	<p style="font-size:15px">(Buy a kit for a team of upto 4 members)</p>
+																</li>
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp00"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type00" id="full" value="full" checked> Online Registration <br>
+																	<input type="radio" name="type00" id="onsite" value="onsite"> Onsite Registration<br>
+
+																</li>
+
+																<li style="margin-top: 1%">
+																	<p style="color: red;" id="total2"></p>
+																</li>
+																<li>
+																	<p style="color: red;" id="off2"></p>
+																</li>
+															</ul>
+
+															<!-- <button  id ="register" style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Arduino For Robotics&tickets='+ document.getElementById('selectc1').value+'&kits='+document.getElementById('selectc2').value+'&total='+document.getElementById('total2').innerHTML+'&type='+document.getElementById('pp').innerHTML;"> Register to Pay</button> -->
+														</div>
+														<button class="mu-register-btn" style="font-size:15px" onClick="GetTotal2('selectc1','selectc2');">Register
+															to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+											</div>
+
+
+
+											<script>
+												$('input:radio[name="type00"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'onsite') {
+															// append goes here
+															document.getElementById("off2").innerHTML = "Proceed to pay 250 Rupees per ticket online and the remaining amount on 8th March onsite";
+														}
+													});
+
+												$('input:radio[name="type00"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'full') {
+															// append goes here
+															document.getElementById("off2").innerHTML = "";
+														}
+													});
+
+												$('#selectc2').on('change', function () {
+													if (this.value != "s3") {
+														document.getElementById("total2").innerHTML = "";
+													}
+												});
+
+												$('#selectc1').on('change', function () {
+													if (this.value != "t3") {
+														document.getElementById("total2").innerHTML = "";
+													}
+												});
+												var ki2 = 0;
+												function GetTotal2(el, e2) {
+													// document.getElementById('off2').innerHTML = "";
+													var t = document.getElementById(el);
+													var k = document.getElementById(e2);
+													var tickets = t.options[t.selectedIndex].value;
+													var kits = k.options[k.selectedIndex].value;
+													var total = 0;
+													var online = document.getElementById('full').checked;
+													var onsite = document.getElementById('onsite').checked;
+													var set;
+													if (online) {
+														set = "online";
+														// document.getElementById('pp00').innerHTML = "Online";
+													}
+													else if (onsite) {
+
+														set = "onsite";
+														// document.getElementById('pp00').innerHTML = "Onsite";
+													}
+
+
+													if (tickets == "t3" && kits == "s3") {
+														document.getElementById('total2').innerHTML = "Please enter the number of tickets or kits required!";
+													}
+													else {
+														if (tickets != "t3") {
+
+															if (document.getElementById('full').checked) {
+																total = (tickets * 700);
+
+															}
+															else if (document.getElementById('onsite').checked) {
+																total = tickets * 250;
+
+															}
+
+
+														}
+														var today = new Date();
+														var dd = today.getDate();
+														var mm = today.getMonth() + 1; //January is 0!
+														var yyyy = today.getFullYear();
+														if (mm == 3 && dd <= 7 && yyyy == 2019 && tickets != "t3" && online)
+															total = total - 50;
+
+														if (kits != "s3") {
+															var off = kits * 10;
+															if (tickets != "t3" && parseInt(tickets) < 5 && online) {
+																total = total + (1600 * kits) - ((1600 * kits * 10) / 100);
+																// document.getElementById('total2').innerHTML = "You get an additional "+ off+"% off!!";
+															}
+															else {
+																total += 1600 * kits;
+															}
+															location.href = '\workshopDetails.php?workshop_name=Arduino For Robotics&tickets=' + document.getElementById('selectc1').value + '&kits=' + document.getElementById('selectc2').value + '&total=' + total + '&type=' + set;
+														}
+														else {
+															if (ki2) {
+																location.href = '\workshopDetails.php?workshop_name=Arduino For Robotics&tickets=' + document.getElementById('selectc1').value + '&kits=' + document.getElementById('selectc2').value + '&total=' + total + '&type=' + set;
+															}
+															else {
+
+																ki2 = 1;
+																document.getElementById('total2').innerHTML = "Buying kits is highly recommended! (Click Register once more to proceed without buying kits)";
+															}
+														}
+													}
+
+												}
+
+
+
+											</script>
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+
+
+											<!--<a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php"> Register to Pay</a>-->
+										</div>
+									</div>
+									<!-- / single price item -->
+								</div>
+								<br>
+								<div class="row">
+									<!-- single price item
+									<div class="col-md-4">
+										<div class="mu-single-price">
+
+											<div class="mu-single-price-head">
+												<span  style="font-size: 180%;" class="mu-currency">Real time app Development</span>
+											</div>
+											<img height="200px" src="images/Android.jpg"></img>
+											<h3 class="mu-price-title">March 17</h3>
+											<ul>
+												<li>Ever wondered of building apps with Cloud storage of your data with authentication. </li>
+<li>Then this is the place for it. Build apps that connect with Firebase cloud storage </li>
+											  Mohan Kumar- 9080629289
+											</ul>
+											<p style=f"color: #FFA500;">Fast Filling <br> <strike>₹799</strike>₹599 till march 14<sup>th</sup> </p>
+											<a href="firebase.pdf" target="_blank">click for more details</a>
+											<center><h5>₹ 799</h5></center>
+											<a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php"> Register to Pay</a>
+										</div>
+									</div>
+									<!-- / single price item -->
+
+
+									<!-- single price item -->
+									<div class="col-md-4">  
+										<!-- col-md-offset-2 include this in the class for offset-->
+										<div style="background-color:  #00CDCD;" class="mu-single-price">
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Image Processing</span>
+											</div>
+											<img height="200px" src="images/Python.jpg"></img>
+											<h3 class="mu-price-title">March 8&9</h3>
+											<ul>
+												<li>Computer Vision is the science that aims to give a similar, if not better, capability to a machine or
+													computer to sense its surroundings.</li>
+												<li>Let's develop our bots with application of algorithms to extract, analyze and understand useful
+													information to achieve automatic visual understanding
+												</li>
+												<li><u>Contact</u></li>
+												Tirumala Sri 9566025732 <br>
+											</ul>
+											<!-- <p style="color: yellow;">Fast Filling!<br></p> -->
+											<a href="cv.pdf" target="_blank">
+												<p style="color: white" ;>click for more details</p>
+											</a>
+											<center>
+												<h5> 700 Rupees Per ticket. (Laptop per team)</h5>
+											</center>
+
+											<button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal3">
+												Register here
+											</button>
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Image Processing</h5>
+														</div>
+														<div class="modal-body">
+
+
+															<ul>
+																<li>Number of tickets : <select id='selectd1' required>
+																		<option value="t4" selected='true' disabled='disabled'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select> *
+																</li>
+
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp4"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type3" id="full4" value="full" checked> Online Registration <br>
+																	<input type="radio" name="type3" id="onsite4" value="onsite"> Onsite Registration<br>
+
+																</li>
+
+																<li style="margin-top: 2%">
+																	<p style="color: red;" id="total4"></p>
+																</li>
+																<li>
+																	<p style="color: red;" id="off4"></p>
+																</li>
+															</ul>
+														</div>
+														<button class="mu-register-btn" style="font-size:15px" onClick="GetTotal4('selectd1');">Register to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+											</div>
+											<script>
+												$('input:radio[name="type3"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'onsite') {
+															// append goes here
+															document.getElementById("off4").innerHTML = "Proceed to pay 250 Rupees per ticket online and the remaining amount on 8th March onsite";
+														}
+													});
+
+												$('input:radio[name="type3"]').change(
+													function () {
+														if ($(this).is(':checked') && $(this).val() == 'full') {
+															// append goes here
+															document.getElementById("off4").innerHTML = "";
+														}
+													});
+
+												$('#selectd1').on('change', function () {
+													if (this.value != "t4") {
+														document.getElementById("total4").innerHTML = "";
+
+													}
+												});
+												function GetTotal4(el) {
+
+													// document.getElementById('off4').innerHTML = "";
+													var t = document.getElementById(el);
+													var tickets = t.options[t.selectedIndex].value;
+													var total = 0;
+													var online = document.getElementById('full4').checked;
+													var onsite = document.getElementById('onsite4').checked;
+													var set;
+													if (online) {
+														set = "online";
+														// document.getElementById('pp4').innerHTML = "Online";
+													}
+													else if (onsite) {
+														set = "onsite";
+
+														// document.getElementById('pp4').innerHTML = "Onsite";
+													}
+													if (tickets != "t4") {
+														document.getElementById('total4').innerHTML = "";
+
+														if (document.getElementById('full4').checked) {
+															total = (tickets * 700);
+
+														}
+														else if (document.getElementById('onsite4').checked) {
+															total = tickets * 250;
+
+														}
+														location.href = '\workshopDetails.php?workshop_name=Image Processing&tickets=' + document.getElementById('selectd1').value + '&kits=0&total=' + total + '&type=' + set;
+
+													}
+													// var today = new Date();
+													// var dd = today.getDate();
+													// var mm = today.getMonth() + 1; //January is 0!
+													// var yyyy = today.getFullYear();
+													// if(mm == 2 && yyyy == 2019 && tickets != "t4" && online)	
+													// 	total = total-50;
+
+
+
+													if (tickets == "t4") {
+														document.getElementById('total4').innerHTML = "Please enter the number of tickets required!";
+													}
+													// else	{
+													// 	document.getElementById('total4').innerHTML = parseFloat(total);
+													// }
+													if (!online && !onsite) {
+														document.getElementById('total4').innerHTML = "Please enter the type of registration!";
+													}
+													// document.getElementById("full4").checked = false;
+													// document.getElementById("onsite4").checked = false;
+
+												}
+
+
+											</script>
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+											<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Internet Of Things&tickets='+ document.getElementById('selecta1').value+'&kits='+document.getElementById('selecta2').value;"> Register to Pay</button> -->
+
+
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+											<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Image Processing&tickets='+ document.getElementById('selectd1').value+'&total='+document.getElementById('total4').innerHTML;"> Register to Pay</button> -->
+											<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Image Processing&tickets='+ document.getElementById('selectd1').value+'&kits=0&total='+document.getElementById('total4').innerHTML+'&type='+document.getElementById('pp4').innerHTML;"> Register to Pay</button> -->
+											<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php"> Register to Pay</a> -->
+										</div>
+									</div>
+									<!-- / single price item -->
+
+									<!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price">
+
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Ethical Hacking</span>
+											</div>
+											<img height="200px" src="images/eh1.jpg"></img>
+											<h3 class="mu-price-title">March 9</h3>
+
+											<ul>
+												<li>Be a step ahead.</li>
+
+												<li> Become a cyber soldier and replenish our neural networks with cyber tricks along with hands on
+													training with patriots.</li>
+												<li><u>Contact</u></li>
+
+												Khiruparaj-86081 36225<br>
+											</ul>
+
+											<a href="ethical.pdf" target="_blank">click for more details</a>
+											<center>
+												<h5>700 Rupees Per ticket.</h5>
+
+											</center>
+											<ul>
+											<li>Online registration is closed</li>
+										</ul>
+											
+											<!-- <button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal4">
+												Register here
+											</button> -->
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Ethical Hacking</h5>
+														</div>
+														<div class="modal-body">
+
+
+															<ul>
+																<li>Number of tickets : <select id='selecte1' required>
+																		<option value="t5" selected='true' disabled='disabled'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select> *
+																</li>
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp5"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type4" id="full5" value="full" checked> Online Registration <br>
+																	<input type="radio" name="type4" id="onsite5" value="onsite"> Onsite Registration<br>
+
+																</li>
+
+
+																<li style="margin-top: 2%">
+																	<p style="color: red;" id="total5"></p>
+																</li>
+																<p style="color:red;" id="off5"></p>
+																</li>
+
+															</ul>
+														</div>
+														<button class="mu-register-btn" style="font-size:15px" onClick="GetTotal5('selecte1');">Register to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+												<script>
+													$('input:radio[name="type4"]').change(
+														function () {
+															if ($(this).is(':checked') && $(this).val() == 'onsite') {
+																// append goes here
+
+																document.getElementById("off5").innerHTML = "Proceed to pay 250 Rupees per ticket online and the remaining amount on 8th March onsite";
+															}
+														});
+
+													$('input:radio[name="type4"]').change(
+														function () {
+															if ($(this).is(':checked') && $(this).val() == 'full') {
+																// append goes here
+																document.getElementById("off5").innerHTML = "";
+															}
+														});
+
+													$('#selecte1').on('change', function () {
+														if (this.value != "t5") {
+															document.getElementById("total5").innerHTML = "";
+
+														}
+													});
+
+													function GetTotal5(el) {
+
+														// document.getElementById('off5').innerHTML = "";
+
+														var t = document.getElementById(el);
+														var tickets = t.options[t.selectedIndex].value;
+														var total = 0;
+														var online = document.getElementById('full5').checked;
+														var onsite = document.getElementById('onsite5').checked;
+														var set;
+														if (online) {
+															set = "online";
+															// document.getElementById('pp5').innerHTML = "Online";
+														}
+														else if (onsite) {
+															set = "onsite";
+															// document.getElementById('pp5').innerHTML = "Onsite";
+														}
+														if (tickets != "t5") {
+															document.getElementById('total5').innerHTML = "";
+
+															if (document.getElementById('full5').checked) {
+																total = (tickets * 700);
+
+															}
+															else if (document.getElementById('onsite5').checked) {
+																total = tickets * 250;
+
+															}
+															location.href = '\workshopDetails.php?workshop_name=Ethical Hacking&tickets=' + document.getElementById('selecte1').value + '&kits=0&total=' + total + '&type=' + set;
+
+														}
+														// var today = new Date();
+														// var dd = today.getDate();
+														// var mm = today.getMonth() + 1; //January is 0!
+														// var yyyy = today.getFullYear();
+														// if(mm == 2 && yyyy == 2019 && tickets != "t5" && online)	
+														// 	total = total-50;
+
+
+
+														if (tickets == "t5") {
+															document.getElementById('total5').innerHTML = "Please enter the number of tickets required!";
+														}
+														// else	{
+														//	document.getElementById("").disabled = true;
+														// document.getElementById("Button").disabled = false;
+
+														// document.getElementById('total5').innerHTML = parseFloat(total);
+														// }
+														if (!online && !onsite) {
+
+															document.getElementById('total5').innerHTML = "Please enter the type of registration!";
+														}
+
+
+													}
+
+
+
+												</script>
+												<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php?t=1&k=yes"> Register to Pay</a> -->
+												<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Ethical Hacking&tickets='+ document.getElementById('selecte1').value+'&total='+document.getElementById('total5').innerHTML;"> Register to Pay</button> -->
+												<!-- <button  style="margin-top: 1%" class="mu-register-btn" onclick="location.href='\workshopDetails.php?workshop_name=Ethical Hacking&tickets='+ document.getElementById('selecte1').value+'&kits=0&total='+document.getElementById('total5').innerHTML+'&type='+document.getElementById('pp5').innerHTML;"> Register to Pay</button> -->
+
+												<!-- <a  style="margin-top: 1%" class="mu-register-btn" href="workshop.php"> Register to Pay</a> -->
+											</div>
+										</div>
+										<!-- / single price item -->
+
+</div>
+
+										<!-- single price item -->
+									<div class="col-md-4">
+										<div class="mu-single-price">
+
+											<div class="mu-single-price-head">
+												<span class="mu-currency">Crypto-tool</span>
+											</div>
+											<img height="200px" src="images/eh1.jpg"></img>
+											<h3 class="mu-price-title">March 9</h3>
+
+											<ul>
+												<li>Be a step ahead.</li>
+
+												<li> Become a cyber soldier and replenish our neural networks with cyber tricks along with hands on
+													training with patriots.</li>
+												<li><u>Contact</u></li>
+
+												Khiruparaj-86081 36225<br>
+											</ul>
+
+											<a href="ethical.pdf" target="_blank">click for more details</a>
+											<center>
+												<h5>700 Rupees Per ticket.</h5>
+
+											</center>
+											<ul>
+											<li>Online registration is closed</li>
+										</ul>
+											
+											<!-- <button type="button" class="mu-register-btn" style="font-size:18px" data-toggle="modal" data-target="#exampleModal5">
+												Register here
+											</button> -->
+
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+											 aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+
+															<h5 class="modal-title" id="exampleModalLabel">Crypto-tool</h5>
+														</div>
+														<div class="modal-body">
+
+
+															<ul>
+																<li>Number of tickets : <select id='selecte2' required>
+																		<option value="t6" selected='true' disabled='disabled'>0</option>
+
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																		<option value="4">4</option>
+																		<option value="5">5</option>
+																	</select> *
+																</li>
+																<li style="margin-top: 2%">Type of registration * <p style="font-size:18px" id="pp6"></p>
+																</li>
+																<li>
+																	<input type="radio" name="type5" id="full6" value="full" checked> Online Registration <br>
+																	<input type="radio" name="type5" id="onsite6" value="onsite"> Onsite Registration<br>
+
+																</li>
+
+
+																<li style="margin-top: 2%">
+																	<p style="color: red;" id="total6"></p>
+																</li>
+																<p style="color:red;" id="off6"></p>
+																</li>
+
+															</ul>
+														</div>
+														<button class="mu-register-btn" style="font-size:15px" onClick="GetTotal6('selecte2');">Register to pay</button>
+														<button type="button" class="mu-register-btn" style="font-size:15px" data-dismiss="modal">Back</button>
+													</div>
+												</div>
+												<script>
+													$('input:radio[name="type5"]').change(
+														function () {
+															if ($(this).is(':checked') && $(this).val() == 'onsite') {
+																// append goes here
+
+																document.getElementById("off6").innerHTML = "Proceed to pay 250 Rupees per ticket online and the remaining amount on 8th March onsite";
+															}
+														});
+
+													$('input:radio[name="type5"]').change(
+														function () {
+															if ($(this).is(':checked') && $(this).val() == 'full') {
+																// append goes here
+																document.getElementById("off6").innerHTML = "";
+															}
+														});
+
+													$('#selecte2').on('change', function () {
+														if (this.value != "t6") {
+															document.getElementById("total6").innerHTML = "";
+
+														}
+													});
+
+													function GetTotal6(el) {
+
+														// document.getElementById('off5').innerHTML = "";
+
+														var t = document.getElementById(el);
+														var tickets = t.options[t.selectedIndex].value;
+														var total = 0;
+														var online = document.getElementById('full6').checked;
+														var onsite = document.getElementById('onsite6').checked;
+														var set;
+														if (online) {
+															set = "online";
+															// document.getElementById('pp5').innerHTML = "Online";
+														}
+														else if (onsite) {
+															set = "onsite";
+															// document.getElementById('pp5').innerHTML = "Onsite";
+														}
+														if (tickets != "t6") {
+															document.getElementById('total6').innerHTML = "";
+
+															if (document.getElementById('full6').checked) {
+																total = (tickets * 700);
+
+															}
+															else if (document.getElementById('onsite6').checked) {
+																total = tickets * 250;
+
+															}
+															location.href = '\workshopDetails.php?workshop_name=Crypto-tool&tickets=' + document.getElementById('selecte2').value + '&kits=0&total=' + total + '&type=' + set;
+
+														}
+														// var today = new Date();
+														// var dd = today.getDate();
+														// var mm = today.getMonth() + 1; //January is 0!
+														// var yyyy = today.getFullYear();
+														// if(mm == 2 && yyyy == 2019 && tickets != "t5" && online)	
+														// 	total = total-50;
+
+
+
+														if (tickets == "t6") {
+															document.getElementById('total6').innerHTML = "Please enter the number of tickets required!";
+														}
+														// else	{
+														//	document.getElementById("").disabled = true;
+														// document.getElementById("Button").disabled = false;
+
+														// document.getElementById('total5').innerHTML = parseFloat(total);
+														// }
+														if (!online && !onsite) {
+
+															document.getElementById('total6').innerHTML = "Please enter the type of registration!";
+														}
+
+
+													}
+
+
+
+												</script>
+									
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+		</section>
+		<!-- End Pricing -->
+
+
+
+
+		<!-- Start Schedule  -->
+		<section id="mu-schedule">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-schedule-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Events Detail</h2>
+								<p>Registrations will be done on spot. Be present in the registration desk before 1 hour of the starting time
+									of the events. Participants will be provided with Anna university certificate.</p>
+							</div>
+
+							<div class="mu-schedule-content-area">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs mu-schedule-menu" role="tablist">
+									<li role="presentation" class="active"><a href="#first-day" aria-controls="first-day" role="tab" data-toggle="tab">8
+											March</a></li>
+									<li role="presentation"><a href="#second-day" aria-controls="second-day" role="tab" data-toggle="tab">9 March</a></li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content mu-schedule-content">
+									<div role="tabpanel" class="tab-pane fade mu-event-timeline in active" id="first-day">
+										<ul>
+
+											<li>
+												<div class="mu-single-event">
+													<img src="images/soccer.jpg" alt="event speaker">
+													<p class="mu-event-time">09.30 AM</p>
+													<h3>ROBOSOCCER</h3>
+													<p>Your goal is simple. Score a goal.<br>
+														Entry Fee: 250 Rupees (Per bot).<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Arun Balaji 9445160250<br>
+														Suriya-7550207158<br>
+														<a href="soccer.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSc-iw0UkZ5A_G7soEUXsAyZR2Nl5ZURx0WSpbMZLl7SqY4FrQ/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+											<li>
+												<div class="mu-single-event">
+													<img src="images/robo.jpeg" alt="event speaker">
+													<p class="mu-event-time">10.15 AM</p>
+													<h3>ROBOWAR</h3>
+													<p>
+														Of course he has a brain. But has he the brawn?
+														<br>
+														Entry Fee: 250 Rupees Per bot.<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Sai Sudharshan 8148173776<br>
+														<a href="war.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSdAQvd-AgzQbPozHRnuUEmUTuLu8OwhOKVMXYS4F3TEXZuN9A/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+											 <li>
+												<div class="mu-single-event">
+													<img src="images/all.jpg" alt="event speaker">
+													<p class="mu-event-time">09.45 AM</p>
+													<h3>QUIZ</h3>
+													<!-- <p>Hippity Hoppity time to cross all the Hiccup-y
+														<br>
+														Entry Fee: 250 Rupees Per bot.<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Manikandan 9952845880
+														<br>
+														<a href="all.pdf" target="_blank">-for more details</a></p> -->
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScQETcad3YbKUFdb2MyTWu1EvEVwU30a0oUQeBZ59skv8915w/viewform?usp=pp_url';">
+														Register Here</button>
+													</div>
+											 </li>
+											
+											<!--			<li>
+												<div class="mu-single-event">
+													<img src="images/race.jpg" alt="event speaker">
+													<p class="mu-event-time">10.15 AM</p>
+													<h3>RC RACE</h3>
+													<p>Don't worry. We don't paint you a racist if you win.
+														<br>
+														Entry Fee: 250 Rupees Per bot.<br>
+														Team: Maximum 3 per team.<br>
+														Contact:Arun Kumar-96772 30203<br>
+
+														<a href="race.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScP34-Nk23ln8QHl1EriX0kpZMVu5Ro556vvrFF3GpON8PMiw/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+											<li>
+												<div class="mu-single-event">
+													<img src="images/SortBot1.jpg" alt="event speaker">
+													<p class="mu-event-time">10.00 AM</p>
+													<h3>SORT BOT</h3>
+													<p>
+														This has nothing to do with salami tactics. But it is piece by piece indeed.
+														<br>
+														Entry Fee: 250 Rupees (Per bot).<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Navaneetha Krishnan 86087 86459<br>
+														Yuvvraj-90940 58417<br>
+														<a href="sort.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSdQebDSyEgvi_LTGDfYn551uyLuLUsKl9WMVvfd1WP0Y9gtfQ/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+
+ -->
+
+
+
+
+
+										</ul>
+									</div>
+									<div role="tabpanel" class="tab-pane fade mu-event-timeline" id="second-day">
+										<ul>
+
+
+											<li>
+												<div class="mu-single-event">
+													<img src="images/Arduino1.jpg" alt="event speaker">
+													<p class="mu-event-time">9.30 AM</p>
+													<h3>ARDUINO YOU KNOW?</h3>
+													<p>We give you bugs. You come up with a "moota poochiyai kollum Naveena machine"<br>
+														Entry fee: ₹250 per team.<br>
+														Team: Maximum 3 per team (Lone wolves are also welcomed).<br>
+														<!-- <p><a href="final.pdf" target="_blank">Final task is available here</a> -->
+															<p>
+																Contact: Haritha 7904124981<br>
+																Sachin-95973 16585<br>
+																<a href="ardu.pdf" target="_blank">-for more details</a></p>
+																<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSdBClGxMD5e-u88H2l1M-2FCERqcH0i75eJwO4Z3rjO3c6QZg/viewform?usp=pp_url';">
+																	Register Here</button>
+												</div>
+											</li>
+											<li>
+												<div class="mu-single-event">
+													<img src="images/line.png" alt="event speaker">
+													<p class="mu-event-time">9.40 AM</p>
+													<h3>LINE FOLLOWER</h3>
+													<p> Is your bot meek enough to follow or is he an outlaw?
+														<br>
+														Entry Fee: 250 Rupees (Per bot).<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Navaneetha Krishnan 86087 86459
+														<br>
+														Mahesh-99401 75600<br>
+														<a href="line.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSfQuyWGAcmpwdq2xPdKDR7qLEEid28P9uVDDFfDyLddAWynpg/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+
+											<li>
+												<div class="mu-single-event">
+													<img src="images/maze1.jpg" alt="event speaker">
+													<p class="mu-event-time">10.00 AM</p>
+													<h3>MAZE SOLVER</h3>
+													<p>
+														Maze for sure looks like Chaos. but chaos is a ladder. Isn't it?<br>
+														Entry Fee: 250 Rupees (Per bot).<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Navaneetha Krishnan 86087 86459
+														<br>
+
+														<a href="maze.pdf" target="_blank">-for more details</a></p>
+													<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLScaCYjyhz7MeZsqoOWu_vhxOcibxety6c4EPBAZqbsuSaM64A/viewform?usp=pp_url';">
+														Register Here</button>
+												</div>
+											</li>
+											<li>
+												<div class="mu-single-event">
+													<img src="images/Robothon.png" alt="event speaker">
+													<p class="mu-event-time">9.00 AM</p>
+													<h3>Project Display</h3>
+													<p>What good is your talent if not for a little show off?<br>
+														Entry fee: ₹250 per ticket.<br>
+														Team: Maximum 3 per team.<br>
+														Contact: Mahesh 99401 75600
+														<br>
+														<!-- <a href="robo.pdf" target="_blank">-for more details</a></p> -->
+														<button style="margin-top: 1%" class="mu-register-btn" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSeHoZqWQOwW8_tXviC9Xcf7Ygu6VdF6QsAXkm2dHWsGVY3oIA/viewform?usp=pp_url';">
+															Register Here</button>
+												</div>
+											</li>
+											<li>
+
+
+									</div>
+									</li>
+
+									</ul>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+		<!-- End Schedule -->
+
+		<!-- Start Video --
+		<section id="mu-video">
+			<div class="mu-video-overlay">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="mu-video-area">
+								<h2>Watch Previous Event Video</h2>
+								<a class="mu-video-play-btn" href="#"><i class="fa fa-play" aria-hidden="true"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Start Video content --
+			<div class="mu-video-content">
+				<div class="mu-video-iframe-area">
+					<a class="mu-video-close-btn" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+					<iframe width="854" height="380" src="https://www.youtube.com/channel/UCw-Cp6KypIMFEIyQpZ1VZkA" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<!-- End Video content --
+
+		</section>
+		<!-- End Video -->
+
+
+
+		<!-- Start Speakers -->
+
+
+
+		<!-- Start Venue -->
+		<section id="mu-venue">
+			<div style="background-color: black" class="mu-venue-area">
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="mu-venue-map">
+							<iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ_ylcWaxfUjoRGBS1GK6CYLc&key=AIzaSyAqfqDCI4VzsZHiCOuc6qNbMpaEH4Vxl6Y"
+							 width="100%" height="260" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>
+					</div>
+
+					<div style="background-color: black" class="col-md-6">
+						<div class="mu-venue-address">
+							<h2>VENUE <i class="fa fa-chevron-right" aria-hidden="true"></i></h2>
+							<h3>Madras Institute of Technology</h3>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- End Venue -->
+
+
+
+		<section id="mu-speakers">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-speakers-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Our Team</h2>
+							</div>
+
+							<!-- Start Speakers Content -->
+							<div class="mu-speakers-content">
+
+								<div class="mu-speakers-slider">
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<img src="images/mani.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<!-- <a target="_blank" href="https://www.facebook.com/profile.php?id=100010124580513">  -->
+
+											<h3>Manikandan R</h3>
+											<p>Chairman</p>
+											<p>99528 45880</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<img src="images/rama.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Ramalingavadivu M</h3>
+											<p>Vice Chairman</p>
+											<p>94880 37232</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<img src="images/mahesh.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<!-- <a target="_blank" href="https://www.facebook.com/profile.php?id=100009843406643">  -->
+
+											<h3>Mahesh R</h3>
+											<p>General Secretary</p>
+											<p>99401 75600</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/Saiga.Naidu"> -->
+										<img src="images/kishore.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Kishore K</h3>
+											<p>Treasurer</p>
+											<p>97898 15246</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<img src="images/sachin.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<!-- <a target="_blank" href="https://www.facebook.com/xabi.alonsolh"> -->
+
+											<h3>Sachinddar L H</h3>
+											<p>Joint Secretary</p>
+											<p>95973 16585</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/swetha.jagannathan1"> -->
+										<img src="images/mary.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Mary Roshma</h3>
+											<p>Event coordinator</p>
+											<p>99404 36726</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/profile.php?id=100010124580513"> -->
+										<img src="images/ismail.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Ashik Ismail M Z</h3>
+											<p>Event coordinator</p>
+											<p>82208 84517</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/profile.php?id=100010124580513"> -->
+										<img src="images/sai_arun.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Sai Arunesh</h3>
+											<p>Design Head</p>
+											<p>95001 61982
+											</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/arunz.stopper"> -->
+										<img src="images/arun.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Arun Kumar D</h3>
+											<p>Marketing Head</p>
+											<p>96772 30203
+											</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/arunz.stopper"> -->
+										<img src="images/mokesh.jpg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Mokesh B</h3>
+											<p>Joint Event Coordinator</p>
+											<p>89032 21909
+											</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+
+
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/pilot.siddhu"> -->
+										<img src="images/ramya.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Ramya S</h3>
+											<p>Web Development Head</p>
+											<p>7358527747 </p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+									<!-- Start single speaker -->
+									<div class="mu-single-speakers">
+										<!-- <a target="_blank" href="https://www.facebook.com/arunz.stopper"> -->
+										<img src="images/navneeth.jpeg" alt="speaker img">
+										<div class="mu-single-speakers-info">
+											<h3>Navaneetha Krishnan</h3>
+											<p>Joint Event Coordinator</p>
+											<p>86087 86459
+											</p>
+										</div>
+									</div>
+									<!-- End single speaker -->
+
+								</div>
+							</div>
+							<!-- End Speakers Content -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Speakers -->
+
+		<!-- Start FAQ --
+		<section id="mu-faq">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-faq-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">FAQ</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint assumenda ut molestias doloremque ipsam, fugit laborum totam, pariatur est cumque at, repudiandae officia ex dolores quas minus optio, iusto soluta?</p>
+							</div>
+
+							<div class="mu-faq-content">
+
+								<div class="panel-group" id="accordion">
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true">
+							                <span class="fa fa-angle-down"></span> Lorem ipsum dolor sit amet.
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseOne" class="panel-collapse collapse in">
+							            <div class="panel-body">
+							              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+							                <span class="fa fa-angle-up"></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseTwo" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+							                <span class="fa fa-angle-up"></span> Lorem ipsum dolor sit amet, consectetur. 
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseThree" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+							                <span class="fa fa-angle-up"></span> Lorem ipsum dolor sit amet, consectetur adipisicing. 
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseFour" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							            </div>
+							          </div>
+							        </div>
+
+							        <div class="panel panel-default">
+							          <div class="panel-heading">
+							            <h4 class="panel-title">
+							              <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+							                <span class="fa fa-angle-up"></span> Lorem ipsum dolor sit amet, consectetur. 
+							              </a>
+							            </h4>
+							          </div>
+							          <div id="collapseFive" class="panel-collapse collapse">
+							            <div class="panel-body">
+							              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							            </div>
+							          </div>
+							        </div>
+
+
+							    </div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End FAQ -->
+
+		<!-- Start Sponsors -->
+		<section id="mu-sponsors">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-sponsors-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-title">Our Sponsors</h2>
+								<p></p>
+							</div>
+
+							<!-- Start spnonsors brand logo -->
+							<div class="mu-sponsors-content">
+								<div class="row">
+
+									<!-- <div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="mu-sponsors-single">
+										<center>	<img src="spon.jpg" width="200px" height="80px" alt="Brand Logo"></center>
+										</div>
+									</div>
+
+									<div class="col-md-6 col-sm-6 col-xs-6">
+										<div class="mu-sponsors-single">
+										<center>	<img src="poorvika.png" width="200px" height="80px" alt="Brand Logo"></center>
+										</div>
+									</div>  -->
+
+									<div class="col-md-2 col-sm-4 col-xs-4 col-md-offset-2">
+										<div class="mu-sponsors-single">
+											<a href="http://www.activegalaxy.in/">
+												<img src="assets/images/sponsor-logo-3.jpg" alt="Brand Logo" href="http://www.activegalaxy.in/">
+											</a>
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+										<div class="mu-sponsors-single">
+											<a href="http://www.activegalaxy.in/">
+												<img src="assets/images/sponsor-logo-4.png" alt="Brand Logo">
+											</a>
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+										<div class="mu-sponsors-single">
+											<a href="http://www.activegalaxy.in/">
+												<img src="assets/images/sponsor-logo-5.jpg" alt="Brand Logo">
+											</a>
+										</div>
+									</div>
+									<!-- 
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-6.png" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-7.png" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-8.png" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-9.png" alt="Brand Logo">
+										</div>
+									</div>
+
+										<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-1.png" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-2.png" alt="Brand Logo">
+										</div>
+									</div>
+
+									<div class="col-md-2 col-sm-4 col-xs-4">
+										<div class="mu-sponsors-single">
+											<img src="assets/images/sponsor-logo-3.png" alt="Brand Logo">
+										</div>
+									</div>
+ -->
+								</div>
+							</div>
+							<!-- End spnonsors brand logo -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Sponsors -->
+
+
+		<!-- Start Contact -->
+		<section id="mu-contact">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="mu-contact-area">
+
+							<div class="mu-title-area">
+								<h2 class="mu-heading-title">Contact Us</h2>
+								Contact us at mitra.mitindia@gmail.com
+							</div>
+
+						</div>
+						<div style="text-align: center" class="col-md-6">
+							<strong>Chairman</strong> <br> R. Manikandan (9952845880)
+
+						</div>
+						<div style="text-align: center" class="col-md-6">
+							<strong>General Secretary</strong> <br> R. Mahesh (99401 75600)
+
+						</div>
+					</div>
+				</div>
+		</section>
+		<!-- End Contact -->
+
+	</main>
+
+	<!-- End main content -->
+
+
+	<!-- Start footer -->
+	<footer id="mu-footer" role="contentinfo">
+		<div class="container">
+			<!-- <div class="mu-footer-area"> -->
+			<!-- <div class="mu-footer-top"> -->
+			<!-- <div class="mu-social-media"> -->
+			<!-- <a href="https://m.facebook.com/DexBot2k18/"><i class="fa fa-facebook"></i></a> -->
+
+			<!-- <a href="https://www.youtube.com/channel/UCw-Cp6KypIMFEIyQpZ1VZkA"><i class="fa fa-youtube"></i></a> -->
+			<!-- </div> -->
+			<!-- </div> -->
+			<div class="mu-footer-bottom">
+				<center>
+					<p class="mu-copy-right">&copy; Copyright <span title="Vishwa | Bently Nixon N">Dexbot Web Team</span>. All right
+						reserved.</p>
+				</center>
+				<br>
+			</div>
+		</div>
+		</div>
+
+	</footer>
+	<!-- End footer -->
+
+
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- Bootstrap -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- Slick slider -->
+	<script type="text/javascript" src="assets/js/slick.min.js"></script>
+	<!-- Event Counter -->
+	<script type="text/javascript" src="assets/js/jquery.countdown.min.js"></script>
+	<!-- Ajax contact form  -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
+
+
+
+	<!-- Custom js -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+
+
+
+
+</body>
+
+</html>
